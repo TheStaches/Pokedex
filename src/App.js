@@ -1,25 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import List from './Components/List'
+import Info from './Components/Info'
 import './App.css';
 
+const axios = require('axios');
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      pokemonList: [],
+      filterType: 'all'
+    }
+    this.handleUpdateFilter = this.handleUpdateFilter.bind(this);
+  } 
+
+  componentDidMount() {
+    if (this.state.pokemonList){
+      axios.get('https://pokeapi.co/api/v2/pokemon/?limit=386')
+        .then(response => this.setState({
+          pokemonList: response.data.results
+        }))
+        console.log('Getting PokemonLists');
+    }
+  }
+
+  handleUpdateFilter(event) {
+    const {value} = event.target;
+    this.setState({
+      filterType: value
+    })
+  }
+
   render() {
+    const {pokemonList, filterType} = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        <h1>Poke'Dex</h1>
+        <div className="row">
+            <List 
+              pokemonList={pokemonList}
+              filterType={filterType}
+              handleUpdateFilter={this.handleUpdateFilter}
+              />
+            <Info />
+        </div>
       </div>
     );
   }

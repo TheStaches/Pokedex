@@ -1,0 +1,13 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - filter:
+      - build/**/*
+      - public/**/*
+      - node_modules/**/*
+extraMetadata:
+  main: build/electron.js
+appId: pokedexReact
+extends: react-cra
+electronVersion: 3.0.10
