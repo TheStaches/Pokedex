@@ -8,26 +8,29 @@ class List extends React.Component {
     let {filteredList} = this.props
 
     if (filteredList) {
-      filteredList = filteredList.filter(poke => new RegExp(searchField, 'ig').test(poke.name));
+      filteredList = filteredList.filter(poke => new RegExp(searchField, 'i').test(poke.name));
     }
 
     return (
       <div className='col-3'>
         <select onChange={updateFilteredList}>
           <option value='all'>All</option>
-          <option value='gen1'>Gen I</option>
-          <option value='gen2'>Gen II</option>
-          <option value='gen3'>Gen III</option>
-          <option value='gen4'>Gen IV</option>
-          <option value='gen5'>Gen V</option>
-          <option value='gen6'>Gen VI</option>
+          <option value='gen1'>Generation I</option>
+          <option value='gen2'>Generation II</option>
+          <option value='gen3'>Generation III</option>
+          <option value='gen4'>Generation IV</option>
+          <option value='gen5'>Generation V</option>
+          <option value='gen6'>Generation VI</option>
         </select>
-        <input type='textbox' onChange={handleSearchFilter}/>
+        <input type='textbox' className='searchBox' onChange={handleSearchFilter} placeholder='Search...' />
 
         <div className='pokeList'>
           {
-            filteredList.map((poke, index) => 
-              <div onClick={handlePokeSelection} value={poke.name} className='pokemon' key={poke.name} ><img alt='img' className='pokeImage' src={poke.image}/>#{poke.id} {poke.name.match(/^(\w+)/)[0]}</div>)
+            filteredList.map(poke => 
+              <div onClick={handlePokeSelection} value={poke.name} className='pokemon' key={poke.name} >
+                <img alt='img' className='pokeImage' src={poke.image}/>#{poke.id} {poke.name.match(/^(\w+)/)[0]}
+                <button value={poke.id} onClick={handlePokeSelection} className='btn btn-primary'/>
+              </div>)
           }
         </div>
       </div>

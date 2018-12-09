@@ -6,7 +6,6 @@
   
 }
 .pokemon:nth-child(odd) {
-  /* background-color:lightgrey; */
 }
 
 .pokemon:hover {
@@ -22,4 +21,20 @@
   background-color:white;
   border-radius: 50%;
   height: 40px;
+  margin: 0 25px;
+}
+.searchBox {
+  height: 25px;
+  border-radius: 5px;
+  border: red;
+}
+.searchBox:focus {
+  box-shadow: none;
+  border: red;
+}
+.searchBox:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.border {
+  border: 1px solid black;
 }

@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       pokemonList: [],
       filteredList: [],
-      selected: {},
+      selected: null,
       loading: true,
       searchField: ''
     }
@@ -22,7 +22,7 @@ class App extends Component {
 
   componentDidMount() {
     if (this.state.pokemonList){
-      axios.get('https://pokeapi.co/api/v2/pokemon/?limit=386')
+      axios.get('https://pokeapi.co/api/v2/pokemon/')
         .then(response => this.setState({
           pokemonList: response.data.results.map((pokemon, index) => {
             pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
@@ -36,7 +36,6 @@ class App extends Component {
         .then(() => this.setState({
           filteredList: this.state.pokemonList
         }))
-        console.log('Getting PokemonLists');
     }
   }
 
@@ -59,9 +58,11 @@ class App extends Component {
   }
 
   handlePokeSelection(event) {
-    console.log(event.target)
-    console.log(event.target.class)
-    console.log(event.target.value)
+    const {value} = event.target;
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${value}/`)
+      .then(response => this.setState({
+        selected: response.data
+      }))
   }
 
   render() {
