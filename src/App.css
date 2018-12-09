@@ -1,0 +1,25 @@
+.pokeList {
+  max-height: 600px;
+  overflow: auto;
+}
+.pokemon {
+  
+}
+.pokemon:nth-child(odd) {
+  /* background-color:lightgrey; */
+}
+
+.pokemon:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: red;
+}
+
+.pokeImage {
+  background-color:white;
+  border-radius: 50%;
+  height: 40px;
+}

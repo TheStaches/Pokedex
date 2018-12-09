@@ -7,7 +7,7 @@ const path = require('path');
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 1280, height: 720});
+  mainWindow = new BrowserWindow({width: 1280, height: 720, resizable: false});
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
 
   mainWindow.on('closed', () => mainWindow = null);

@@ -1,14 +1,15 @@
 import React from 'react';
 
 class Info extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
 
   render() {
+    const {selected} = this.props
     return (
-      <div className='col-8'>Info Card</div>
+      <div className='col-9'>Info Card
+        {
+          selected && <p>{selected.name}</p>
+        }
+      </div>
     )
   }
 }

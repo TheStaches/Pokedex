@@ -1,25 +1,35 @@
 import React from 'react';
 
 class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
 
   render() {
-    const {pokemonList, filterType, handleUpdateFilter} = this.props;
+    const {updateFilteredList, handlePokeSelection, handleSearchFilter, searchField} = this.props;
+
+    let {filteredList} = this.props
+
+    if (filteredList) {
+      filteredList = filteredList.filter(poke => new RegExp(searchField, 'ig').test(poke.name));
+    }
+
     return (
-      <div className='col-4'>List Card
-      <select onChange={handleUpdateFilter}>
-        <option value='all'>All</option>
-        <option value='gen1'>Gen I</option>
-        <option value='gen2'>Gen II</option>
-        <option value='gen3'>Gen III</option>
-      </select>
-        {filterType === 'all' && pokemonList.map((poke, index) => <p key={index} >{poke.name}</p>)}
-        {filterType === 'gen1' && pokemonList.slice(0, 151).map((poke, index) => <p key={index} >{poke.name}</p>)}
-        {filterType === 'gen2' && pokemonList.slice(151, 251).map((poke, index) => <p key={index} >{poke.name}</p>)}
-        {filterType === 'gen3' && pokemonList.slice(251, 386).map((poke, index) => <p key={index} >{poke.name}</p>)}
+      <div className='col-3'>
+        <select onChange={updateFilteredList}>
+          <option value='all'>All</option>
+          <option value='gen1'>Gen I</option>
+          <option value='gen2'>Gen II</option>
+          <option value='gen3'>Gen III</option>
+          <option value='gen4'>Gen IV</option>
+          <option value='gen5'>Gen V</option>
+          <option value='gen6'>Gen VI</option>
+        </select>
+        <input type='textbox' onChange={handleSearchFilter}/>
+
+        <div className='pokeList'>
+          {
+            filteredList.map((poke, index) => 
+              <div onClick={handlePokeSelection} value={poke.name} className='pokemon' key={poke.name} ><img alt='img' className='pokeImage' src={poke.image}/>#{poke.id} {poke.name.match(/^(\w+)/)[0]}</div>)
+          }
+        </div>
       </div>
     )
   }
