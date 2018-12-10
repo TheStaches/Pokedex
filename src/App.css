@@ -2,12 +2,9 @@
   max-height: 600px;
   overflow: auto;
 }
-.pokemon {
-  
+.selected {
+  background-color: lightgrey;
 }
-.pokemon:nth-child(odd) {
-}
-
 .pokemon:hover {
   background-color: lightblue;
   cursor: pointer;
@@ -19,9 +16,12 @@
 
 .pokeImage {
   background-color:white;
-  border-radius: 50%;
-  height: 40px;
-  margin: 0 25px;
+  border-radius: 3px;
+  height: 65px;
+}
+.pokeImage:hover {
+  background-color: lightgrey;
+  cursor: pointer;
 }
 .searchBox {
   height: 25px;
@@ -34,6 +34,30 @@
 }
 .searchBox:focus::-webkit-input-placeholder {
   color: transparent;
+}
+.infoPage {
+  background-image: linear-gradient(to right, #78C750, #A040A0);
+}
+.infoImage {
+  height: 100%;
+}
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
+.types {
+
+}
+.games {
+  overflow: auto;
+  max-height: 187px;
+}
+.abilities { 
+  cursor: pointer;
+}
+.loadingBall {
+  display: flex;
+  flex-direction: center;
 }
 .border {
   border: 1px solid black;

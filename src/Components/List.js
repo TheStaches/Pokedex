@@ -27,10 +27,8 @@ class List extends React.Component {
         <div className='pokeList'>
           {
             filteredList.map(poke => 
-              <div onClick={handlePokeSelection} value={poke.name} className='pokemon' key={poke.name} >
-                <img alt='img' className='pokeImage' src={poke.image}/>#{poke.id} {poke.name.match(/^(\w+)/)[0]}
-                <button value={poke.id} onClick={handlePokeSelection} className='btn btn-primary'/>
-              </div>)
+              <img alt='pokemon' className='pokeImage' src={poke.image} key={poke.name} onClick={handlePokeSelection} id={poke.name}/>
+            )
           }
         </div>
       </div>

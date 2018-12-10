@@ -13,7 +13,7 @@ class App extends Component {
       filteredList: [],
       selected: null,
       loading: true,
-      searchField: ''
+      searchField: '',
     }
     this.updateFilteredList = this.updateFilteredList.bind(this);
     this.handlePokeSelection = this.handlePokeSelection.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
         .then(response => this.setState({
           pokemonList: response.data.results.map((pokemon, index) => {
             pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
-            pokemon.name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1, )
+            pokemon.name = this.capitalize(pokemon.name)
             pokemon.id = index + 1
             return pokemon
           }
@@ -58,12 +58,20 @@ class App extends Component {
   }
 
   handlePokeSelection(event) {
-    const {value} = event.target;
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${value}/`)
+    const src = event.target.src.match(/[\d]+/)
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${src}/`)
       .then(response => this.setState({
         selected: response.data
       }))
   }
+
+  capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1, )
+  }
+
+  // updateAbilitySelect(event) {
+  //   this.state.filteredList.find(poke => poke.id === )
+  // }
 
   render() {
     const {filteredList, selected, loading, searchField} = this.state;
@@ -82,9 +90,11 @@ class App extends Component {
               updateFilteredList={this.updateFilteredList}
               handlePokeSelection={this.handlePokeSelection}
               handleSearchFilter={this.handleSearchFilter}
+              capitalize={this.capitalize}
               />
             <Info 
               selected={selected}
+              capitalize={this.capitalize}
             />
         </div>
       </div>
