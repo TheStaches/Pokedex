@@ -58,20 +58,41 @@ class App extends Component {
   }
 
   handlePokeSelection(event) {
-    const src = event.target.src.match(/[\d]+/)
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${src}/`)
-      .then(response => this.setState({
-        selected: response.data
-      }))
+    const src = parseInt(event.target.src.match(/[\d]+/)[0])
+    const selected = this.state.filteredList.find(poke => poke.id === src)
+
+    if (selected.hasOwnProperty('species')) {
+      this.setState({
+        selected
+      })
+    } else {
+      axios.all([
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${src}/`),
+        axios.get(`https://pokeapi.co/api/v2/pokemon-species/${src}/`)
+      ])
+        .then(response => {
+          const addSpecies = this.state.filteredList.map(poke => {
+            const url = poke.url
+            const image = poke.image
+            if (poke.id === src) {
+              poke = response[0].data
+              poke.species = response[1].data
+              poke.url = url
+              poke.image = image
+            }
+            return poke;
+          })
+          return this.setState({
+            selected: response[0].data,
+            filteredList: addSpecies
+          });
+        })
+    }
   }
 
   capitalize(str) {
     return str[0].toUpperCase() + str.slice(1, )
   }
-
-  // updateAbilitySelect(event) {
-  //   this.state.filteredList.find(poke => poke.id === )
-  // }
 
   render() {
     const {filteredList, selected, loading, searchField} = this.state;
@@ -82,7 +103,7 @@ class App extends Component {
     )}
     return (
       <div className="">
-        <h1>Poke'Dex</h1>
+        <h1 className='title' >Poke'Dex</h1>
         <div className="row">
             <List 
               filteredList={filteredList}

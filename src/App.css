@@ -25,21 +25,24 @@
 }
 .searchBox {
   height: 25px;
-  border-radius: 5px;
-  border: red;
+  border: 1px solid lightgrey;
+  width: 100%
 }
 .searchBox:focus {
-  box-shadow: none;
-  border: red;
+  outline: none;
+  
 }
 .searchBox:focus::-webkit-input-placeholder {
   color: transparent;
 }
+
+
 .infoPage {
-  background-image: linear-gradient(to right, #78C750, #A040A0);
+  /* background-image: linear-gradient(to right, #78C750, #A040A0); */
 }
 .infoImage {
   height: 100%;
+  margin: auto;
 }
 .stats {
   display: flex;
