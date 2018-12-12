@@ -3,7 +3,7 @@ import React from 'react';
 class Info extends React.Component {
 
   render() {
-    const {capitalize, removeDash, getSkillDescription} = this.props
+    const {capitalize, removeDash, getSkillDescription, getAbilityDescription} = this.props
 
     if (this.props.selected) {
       const {name, id, sprites, stats, height, weight, base_experience, abilities, types, moves} = this.props.selected
@@ -11,25 +11,30 @@ class Info extends React.Component {
 
       return (
       <div className='col-9 infoPage'>
-        <h1>#{id}: {capitalize(name)}</h1>
+        <div className='infoHeader'>
+          <h1>#{id}: {capitalize(name)}</h1>
+          <div className='typeIcons'>
+            {types.map(type => 
+              <div className={`types ${type.type.name}`}>{capitalize(type.type.name)}</div>
+            )}
+          </div>
+        </div>
         <div className='row'>
-          <div className='col-4 shadow infoImageDiv'>
+          <div className='col-4 infoImageDiv'>
             <img alt='img' className='infoImage' src={sprites.front_default}/>
           </div>
-          <div className='col-8 shadow'>
+          <div className='col-8'>
             {<p>ID: #{id}</p>}
             {<p>Name: {capitalize(name)}</p>}
             
             {
-            <p>Entry:  
-              {flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text}
-            </p>
+            <p>Entry: {flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text}</p>
             }
           </div>
         </div>
 
         <div className='row'>
-          <div className='col-4 shadow'>
+          <div className='col-4'>
             <h3>Info: </h3>
             <div className='info'>
               <div>Height: </div>
@@ -53,11 +58,11 @@ class Info extends React.Component {
             </div>
             <div className='info'>
               <div>Habitat: </div>
-              <div>{capitalize(habitat.name)}</div>
+              <div>{habitat ? capitalize(habitat.name) : 'n/a'}</div>
             </div>
           </div>
 
-          <div className='col-4 shadow'>
+          <div className='col-4'>
             <h3>Base Stats:</h3>
             {
               stats.map((stat, index) => 
@@ -68,30 +73,43 @@ class Info extends React.Component {
                 )
             }
           </div>
-          <div className='col-4 shadow'>
+          <div className='col-4'>
             <h3>Abilities: </h3>
+            <div className='allAbilities'>
             {
-              abilities.map((ability, index) => 
-                <div className='abilities' key={id-index} >+ {removeDash(ability.name)}</div>  
+              abilities.map((ability, index) => {
+                return (
+                  <div>
+                    <div key={index} className='abilityDiv'>
+                      <button value={ability.url} className='abilities' onClick={getAbilityDescription} >
+                        {ability.hidden ? '+' : '-'} {removeDash(ability.name)}
+                      </button>
+                    </div>
+                    <div>
+                      {!ability.hidden && <p className='abilityDescription'>{ability.description}</p>}
+                    </div>
+                  </div>
+                )
+              }
               )
             }
-            
+            </div>
           </div>
           
         </div>
 
         <div className='row'>
-          <div className='col-12 moveDiv shadow'>
+          <div className='col-12'>
             <h3>Moves: </h3>
+            <div className='allMoves'>
             {
               moves.map((move, index) => {
                 return (
                   <div>
                     <div key={index} className='movesDiv' >
                       <button value={move.url} className='moves' onClick={getSkillDescription} >
-                        {move.hidden ? '+' : '-'}
+                        {move.hidden ? '+' : '-'} {removeDash(move.name)}
                       </button>
-                      <p>{removeDash(move.name)}</p>
                     </div>
                     <div>
                       {!move.hidden && <p className='moveDescription'>{move.description}</p>}
@@ -101,6 +119,7 @@ class Info extends React.Component {
               }
               )
             }
+            </div>
           </div>
         </div>
       </div>

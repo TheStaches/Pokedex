@@ -1,9 +1,17 @@
-.container  {
+.container {
   margin: 0;
 }
+.title {
+  /* background-color:red; */
+}
+.list {
+  box-shadow: 7px 6px 10px lightgrey;
+}
 .pokeList {
-  max-height: 630px;
+  height: 632px;
   overflow: auto;
+  width: 300px;
+  padding-left: 10px;
 }
 .selected {
   background-color: lightgrey;
@@ -43,8 +51,22 @@
 .infoPage {
   /* background-image: linear-gradient(to right, #78C750, #A040A0); */
 }
+.infoHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.typeIcons {
+  display: flex;
+  justify-content: space-between;
+}
+.types {
+  margin-right: 50px;
+  width: 150px;
+  text-align: center;
+  padding-top: 15px;
+}
 .infoImageDiv {
-  height: 200px;
+  height: 160px;
 }
 .infoImage {
   height: 100%
@@ -57,8 +79,8 @@
   display: flex;
   justify-content: space-between;
 }
-.types {
-
+.col-4 {
+  padding: 20px;
 }
 .games {
   overflow: auto;
@@ -66,13 +88,37 @@
 }
 .abilities { 
   cursor: pointer;
+  border: none;
+}
+.abilityDiv {
+  display: flex;
+}
+.abilities:focus {
+  outline: 0;
+}
+.allAbilities {
+  overflow: auto;
+  height: 145px;
+}
+.abilityDescription {
+  background-color: lightgrey
 }
 .moves { 
   cursor: pointer;
+  border: none;
+}
+.moves:focus {
+  outline: 0;
 }
 .movesDiv {
-  overflow: auto;
   display: flex;
+}
+.allMoves {
+  overflow: auto;
+  height: 190px;
+}
+.moveDescription {
+  background-color: lightgrey;
 }
 .loadingBall {
   display: flex;
@@ -80,4 +126,59 @@
 }
 .border {
   border: 1px solid black;
+}
+
+.poison {
+  background-color: #A040A0;
+}
+.grass {
+  background-color: #78C750;
+}
+.normal {
+  background-color: #A8A878;
+}
+.fire {
+  background-color: #F08030;
+}
+.fighting {
+  background-color: #C03728;
+}
+.water {
+  background-color: #6890F0;
+}
+.flying {
+  background-color: #A890F0;
+}
+.electric {
+  background-color: #F8D032;
+}
+.ground {
+  background-color: #E0C068;
+}
+.psychic {
+  background-color: #ED5587;
+}
+.rock {
+  background-color: #B8A038;
+}
+.ice {
+  background-color: #98D8D8;
+}
+.bug {
+  background-color: #A8B81F;
+}
+.dragon {
+  background-color: #734EF8;
+}
+.ghost {
+  background-color: #715898;
+}
+.dark {
+  background-color: #715848;
+}
+.steel {
+  background-color: #B8B8D0;
+}
+.fairy {
+  background-color: #EE99AC;
 }

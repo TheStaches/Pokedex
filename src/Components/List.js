@@ -12,7 +12,7 @@ class List extends React.Component {
     }
 
     return (
-      <div className='col-3'>
+      <div className='col-3 list'>
         <select onChange={updateFilteredList}>
           <option value='all'>All</option>
           <option value='gen1'>Generation I</option>

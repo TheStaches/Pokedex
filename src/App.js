@@ -19,6 +19,7 @@ class App extends Component {
     this.handlePokeSelection = this.handlePokeSelection.bind(this);
     this.handleSearchFilter = this.handleSearchFilter.bind(this);
     this.getSkillDescription = this.getSkillDescription.bind(this);
+    this.getAbilityDescription = this.getAbilityDescription.bind(this);
   } 
 
   componentDidMount() {
@@ -134,15 +135,38 @@ class App extends Component {
     }
   }
 
+  getAbilityDescription(event) {
+    const {value} = event.target;
+    const selected = this.state.selected;
+    const ability = selected.abilities.find(ability => value === ability.url)
+
+    if(!ability.descriptio) {
+      axios.get(value)
+        .then(response => {
+          ability.description = response.data.effect_entries[0].effect;
+          ability.hidden = !ability.hidden
+          this.setState({
+            selected
+          })
+        })
+    } else {
+      ability.hidden = !ability.hidden
+      this.setState({
+        selected
+      })
+    }
+
+  }
+
   render() {
     const {filteredList, selected, loading, searchField, movesList} = this.state;
 
     if (loading) {
       return (
-        <h1>Loading...</h1>
+        <h1 className='loading'>Loading...</h1>
     )}
     return (
-      <div className="container">
+      <div className="container-fluid">
         <h1 className='title' >Poke'Dex</h1>
         <div className="row">
             <List 
@@ -159,6 +183,7 @@ class App extends Component {
               capitalize={this.capitalize}
               removeDash={this.removeDash}
               getSkillDescription={this.getSkillDescription}
+              getAbilityDescription={this.getAbilityDescription}
             />
         </div>
       </div>
