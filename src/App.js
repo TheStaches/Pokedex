@@ -18,6 +18,7 @@ class App extends Component {
     this.updateFilteredList = this.updateFilteredList.bind(this);
     this.handlePokeSelection = this.handlePokeSelection.bind(this);
     this.handleSearchFilter = this.handleSearchFilter.bind(this);
+    this.getSkillDescription = this.getSkillDescription.bind(this);
   } 
 
   componentDidMount() {
@@ -71,7 +72,7 @@ class App extends Component {
         axios.get(`https://pokeapi.co/api/v2/pokemon-species/${src}/`)
       ])
         .then(response => {
-          const addSpecies = this.state.filteredList.map(poke => {
+          const addSpeciesList = this.state.filteredList.map(poke => {
             const url = poke.url
             const image = poke.image
             if (poke.id === src) {
@@ -79,30 +80,69 @@ class App extends Component {
               poke.species = response[1].data
               poke.url = url
               poke.image = image
+              poke.moves = poke.moves.map(move => {
+                return {hidden: true,
+                id: move.move.url.slice(31, 33),
+                name: move.move.name,
+                url: move.move.url}
+              });
+                
+              poke.abilities = poke.abilities.map(ability => {
+                return {hidden: true,
+                id: ability.ability.url.slice(34, 36),
+                name: ability.ability.name,
+                url: ability.ability.url}
+              });
             }
             return poke;
           })
           return this.setState({
             selected: response[0].data,
-            filteredList: addSpecies
+            filteredList: addSpeciesList
           });
         })
     }
   }
 
   capitalize(str) {
-    return str[0].toUpperCase() + str.slice(1, )
+    return str[0].toUpperCase() + str.slice(1)
+  }
+
+  removeDash(str) {
+    return str.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+  }
+
+  getSkillDescription(event) {
+    const {value} = event.target;
+    const selected = this.state.selected;
+    const move = selected.moves.find(move => value === move.url)
+
+    if (!move.description) {
+      axios.get(value)
+        .then(response => {
+          move.description = response.data.effect_entries[0].effect
+          move.hidden = !move.hidden
+          this.setState({
+            selected
+          })
+        })
+    } else {
+      move.hidden = !move.hidden
+      this.setState({
+        selected
+      })
+    }
   }
 
   render() {
-    const {filteredList, selected, loading, searchField} = this.state;
+    const {filteredList, selected, loading, searchField, movesList} = this.state;
 
     if (loading) {
       return (
         <h1>Loading...</h1>
     )}
     return (
-      <div className="">
+      <div className="container">
         <h1 className='title' >Poke'Dex</h1>
         <div className="row">
             <List 
@@ -115,7 +155,10 @@ class App extends Component {
               />
             <Info 
               selected={selected}
+              movesList={movesList}
               capitalize={this.capitalize}
+              removeDash={this.removeDash}
+              getSkillDescription={this.getSkillDescription}
             />
         </div>
       </div>

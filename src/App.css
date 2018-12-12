@@ -1,5 +1,8 @@
+.container  {
+  margin: 0;
+}
 .pokeList {
-  max-height: 600px;
+  max-height: 630px;
   overflow: auto;
 }
 .selected {
@@ -40,9 +43,15 @@
 .infoPage {
   /* background-image: linear-gradient(to right, #78C750, #A040A0); */
 }
+.infoImageDiv {
+  height: 200px;
+}
 .infoImage {
-  height: 100%;
-  margin: auto;
+  height: 100%
+}
+.info {
+  display: flex;
+  justify-content: space-between;
 }
 .stats {
   display: flex;
@@ -57,6 +66,13 @@
 }
 .abilities { 
   cursor: pointer;
+}
+.moves { 
+  cursor: pointer;
+}
+.movesDiv {
+  overflow: auto;
+  display: flex;
 }
 .loadingBall {
   display: flex;
