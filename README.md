@@ -1,4 +1,4 @@
-# Chewie
+# Pokedex
 
 A pokedex built using Electron and React
 
