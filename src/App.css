@@ -4,6 +4,8 @@
 .title {
   /* background-color:red; */
 }
+
+/* List Component */
 .list {
   box-shadow: 7px 6px 10px lightgrey;
 }
@@ -20,11 +22,6 @@
   background-color: lightblue;
   cursor: pointer;
 }
-
-.btn:hover {
-  color: red;
-}
-
 .pokeImage {
   background-color:white;
   border-radius: 3px;
@@ -41,16 +38,12 @@
 }
 .searchBox:focus {
   outline: none;
-  
 }
 .searchBox:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-
-.infoPage {
-  /* background-image: linear-gradient(to right, #78C750, #A040A0); */
-}
+/* Info Component */
 .infoHeader {
   display: flex;
   justify-content: space-between;
@@ -69,7 +62,8 @@
   height: 160px;
 }
 .infoImage {
-  height: 100%
+  height: 100%;
+  padding-left: 80px;
 }
 .info {
   display: flex;
@@ -120,14 +114,9 @@
 .moveDescription {
   background-color: lightgrey;
 }
-.loadingBall {
-  display: flex;
-  flex-direction: center;
-}
-.border {
-  border: 1px solid black;
-}
 
+
+/* Type Icon Colors */
 .poison {
   background-color: #A040A0;
 }

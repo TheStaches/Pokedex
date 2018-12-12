@@ -23,10 +23,12 @@ class App extends Component {
   } 
 
   componentDidMount() {
+    // Gets full pokemon list on page load
     if (this.state.pokemonList){
       axios.get('https://pokeapi.co/api/v2/pokemon/')
         .then(response => this.setState({
           pokemonList: response.data.results.map((pokemon, index) => {
+            // Adds image url and pokemon id to initial pokemon list
             pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
             pokemon.name = this.capitalize(pokemon.name)
             pokemon.id = index + 1
@@ -63,6 +65,7 @@ class App extends Component {
     const src = parseInt(event.target.src.match(/[\d]+/)[0])
     const selected = this.state.filteredList.find(poke => poke.id === src)
 
+    // Checks if secondary pokemon data has been cached already
     if (selected.hasOwnProperty('species')) {
       this.setState({
         selected
@@ -81,6 +84,8 @@ class App extends Component {
               poke.species = response[1].data
               poke.url = url
               poke.image = image
+
+              // Updates pokemon move set for easier manipulation
               poke.moves = poke.moves.map(move => {
                 return {hidden: true,
                 id: move.move.url.slice(31, 33),
@@ -88,6 +93,7 @@ class App extends Component {
                 url: move.move.url}
               });
                 
+              // Updates pokemon abilities for easier manipulation
               poke.abilities = poke.abilities.map(ability => {
                 return {hidden: true,
                 id: ability.ability.url.slice(34, 36),
@@ -118,6 +124,7 @@ class App extends Component {
     const selected = this.state.selected;
     const move = selected.moves.find(move => value === move.url)
 
+    // Checks if skills description has been cached
     if (!move.description) {
       axios.get(value)
         .then(response => {
@@ -140,6 +147,7 @@ class App extends Component {
     const selected = this.state.selected;
     const ability = selected.abilities.find(ability => value === ability.url)
 
+    // Checks if ability description has been cached
     if(!ability.descriptio) {
       axios.get(value)
         .then(response => {
@@ -161,6 +169,7 @@ class App extends Component {
   render() {
     const {filteredList, selected, loading, searchField, movesList} = this.state;
 
+    // Waits for initial pokemon list before rendering main page
     if (loading) {
       return (
         <h1 className='loading'>Loading...</h1>
@@ -176,7 +185,7 @@ class App extends Component {
               handlePokeSelection={this.handlePokeSelection}
               handleSearchFilter={this.handleSearchFilter}
               capitalize={this.capitalize}
-              />
+            />
             <Info 
               selected={selected}
               movesList={movesList}

@@ -7,6 +7,7 @@ class List extends React.Component {
 
     let {filteredList} = this.props
 
+    // Handles filtering pokemon based on the search input
     if (filteredList) {
       filteredList = filteredList.filter(poke => new RegExp(searchField, 'i').test(poke.name));
     }
@@ -27,7 +28,7 @@ class List extends React.Component {
         <div className='pokeList'>
           {
             filteredList.map(poke => 
-              <img alt='pokemon' className='pokeImage' src={poke.image} key={poke.name} onClick={handlePokeSelection} id={poke.name}/>
+              <img alt='pokemon' className='pokeImage' src={poke.image} key={poke.name} onClick={handlePokeSelection} />
             )
           }
         </div>
