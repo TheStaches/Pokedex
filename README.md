@@ -12,4 +12,4 @@ $ npm install
 npm run electron
 ```
 
-![Pokedex.png](Pokedex.png)
+![Pokedex.gif](Pokedex.gif)
