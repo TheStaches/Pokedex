@@ -1,19 +1,66 @@
+.border {
+  border: 10px solid black;
+}
+@font-face {
+  font-family: 'Pokemon';
+  src: URL('/PokemonSolid.ttf') format('truetype');
+}
+
+
+#root {
+  background-color: #f5f5f5;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeSpeed;
+}
 .container {
   margin: 0;
 }
-.title {
-  /* background-color:red; */
+.row {
+  margin: 0;
 }
-
+.shadow-sm {
+  border-radius: 5px;
+}
+.title {
+  background-color: red;
+  padding-left: 15px;
+  width: 100%;
+  margin: 0;
+}
+.select {
+  text-align: center;
+  vertical-align: middle;
+}
+.loadingPage {
+  background-color: red;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.loadingInfo {
+}
+.loadingPokeball {
+  height: 250px;
+}
+.loading {
+  font-size: 70px;
+  margin-top: 10px;
+  
+}
 /* List Component */
 .list {
   box-shadow: 7px 6px 10px lightgrey;
+  height: 100vh;
+  width: 22%;
+  background-color: white
+}
+.inputs {
+  display: flex;
 }
 .pokeList {
-  height: 632px;
+  height: 96vh;
   overflow: auto;
-  width: 300px;
-  padding-left: 10px;
 }
 .selected {
   background-color: lightgrey;
@@ -44,43 +91,69 @@
 }
 
 /* Info Component */
+.infoPage {
+  height: 100vh;
+  width: 78%;
+  overflow: auto;
+}
 .infoHeader {
   display: flex;
   justify-content: space-between;
+  height: 75px;
+  padding: 15px;
+  margin-bottom: 20px;
 }
 .typeIcons {
   display: flex;
   justify-content: space-between;
 }
 .types {
-  margin-right: 50px;
-  width: 150px;
+  margin-right: 28px;
+  width: 130px;
   text-align: center;
-  padding-top: 15px;
+  padding-top: 11px;
+  border-radius: 5px;
 }
-.infoImageDiv {
-  height: 160px;
+.rows {
+  margin-bottom: 20px;
 }
-.infoImage {
-  height: 100%;
-  padding-left: 80px;
-}
-.info {
-  display: flex;
-  justify-content: space-between;
-}
-.stats {
+.row2 {
   display: flex;
   justify-content: space-between;
 }
 .col-4 {
-  padding: 20px;
+  padding: 10px;
+  height: 250px;
+}
+.statTitles {
+  background-color: red;
+  padding: 4px 4px 4px 15px;
+}
+.infoImageDiv {
+  margin: 0 20px;
+}
+.infoImage {
+  width: 100%;
+}
+.infoTitle {
+  background-color: red;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 .games {
   overflow: auto;
   max-height: 187px;
 }
 .abilities { 
+  background-color: #f5f5f5;
   cursor: pointer;
   border: none;
 }
@@ -95,9 +168,13 @@
   height: 145px;
 }
 .abilityDescription {
-  background-color: lightgrey
+  background-color: #f1f1f1;
+  box-shadow: inset 0px 0px 6px -1px rgba(36,36,36,0.75);
+  margin-left: 20px;
+  padding: 5px 10px;
 }
 .moves { 
+  background-color: #f5f5f5;
   cursor: pointer;
   border: none;
 }
@@ -109,10 +186,13 @@
 }
 .allMoves {
   overflow: auto;
-  height: 190px;
+  height: 300px;
 }
 .moveDescription {
-  background-color: lightgrey;
+  background-color: #f1f1f1;
+  box-shadow: inset 0px 0px 6px -1px rgba(36,36,36,0.75);
+  margin-left: 20px;
+  padding: 5px 10px;
 }
 
 

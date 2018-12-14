@@ -10,24 +10,26 @@ class Info extends React.Component {
       const {flavor_text_entries, color, shape, habitat} = this.props.selected.species;
 
       return (
-        <div className='col-9 infoPage'>
-
+        <div className='infoPage border'>
+          <h1 className='title' >Pokédex</h1>
+          
+          
     {/* Info page header */}
           <div className='infoHeader'>
             <h1>#{id}: {capitalize(name)}</h1>
             <div className='typeIcons'>
-              {types.map(type => 
-                <div className={`types ${type.type.name}`}>{capitalize(type.type.name)}</div>
+              {types.map((type, index) => 
+                <div key={index}className={`types ${type.type.name}`}>{capitalize(type.type.name)}</div>
               )}
             </div>
           </div>
 
     {/* Image and pokedex entry data */}
-          <div className='row'>
-            <div className='col-4 infoImageDiv'>
+          <div className='row rows'>
+            <div className='col-3 infoImageDiv shadow'>
               <img alt='img' className='infoImage' src={sprites.front_default} />
             </div>
-            <div className='col-8'>
+            <div className='col-8 shadow'>
               {<p>ID: #{id}</p>}
               {<p>Name: {capitalize(name)}</p>}
               {<p>Entry: {flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text}</p>}
@@ -35,12 +37,12 @@ class Info extends React.Component {
           </div>
         
     {/* Info, Base Stats, and Abilities */}
-          <div className='row'>
+          <div className='row rows'>
 
         {/* Info */}
-            <div className='col-4'>
-              <h3>Info: </h3>
-              <div className='info'>
+            <div className='col-4 shadow'>
+              <h3 className='statTitles' >Info: </h3>
+              <div className='info '>
                 <div>Height: </div>
                 <div>{Math.abs(height / 39.3701 * 12).toFixed(0)}' {(height / 39.3701 * 12 % 12).toFixed(0)}"</div>
               </div>
@@ -67,8 +69,8 @@ class Info extends React.Component {
             </div>
 
         {/* Base Stats */}
-            <div className='col-4'>
-              <h3>Base Stats:</h3>
+            <div className='col-4 shadow'>
+              <h3 className='statTitles' >Base Stats:</h3>
               {
                 stats.map((stat, index) => 
                   <div className='stats' key={index} >
@@ -80,14 +82,14 @@ class Info extends React.Component {
             </div>
 
         {/* Abilities */}
-            <div className='col-4'>
-              <h3>Abilities: </h3>
+            <div className='col-4 shadow'>
+              <h3 className='statTitles'>Abilities: </h3>
               <div className='allAbilities'>
               {
                 abilities.map((ability, index) => {
                   return (
-                    <div>
-                      <div key={index} className='abilityDiv'>
+                    <div key={index}>
+                      <div className='abilityDiv'>
                         <button value={ability.url} className='abilities' onClick={getAbilityDescription} >
                           {ability.hidden ? '+' : '-'} {removeDash(ability.name)}
                         </button>
@@ -104,15 +106,15 @@ class Info extends React.Component {
           </div>
     
     {/* Moves */}
-          <div className='row'>
+          <div className='row rows'>
             <div className='col-12'>
-              <h3>Moves: </h3>
+              <h3 className='statTitles'>Moves: </h3>
               <div className='allMoves'>
               {
                 moves.map((move, index) => {
                   return (
-                    <div>
-                      <div key={index} className='movesDiv' >
+                    <div key={index}>
+                      <div className='movesDiv' >
                         <button value={move.url} className='moves' onClick={getSkillDescription} >
                           {move.hidden ? '+' : '-'} {removeDash(move.name)}
                         </button>
@@ -131,8 +133,9 @@ class Info extends React.Component {
       )
     } else {
       return (
-      <div className='col-9'>
-          <h1>Select a Poke'mon</h1>
+      <div className='infoPage'>
+        <h1 className='title' >Pokédex</h1> 
+          <h1 className='select'>Select a Pokémon</h1>
         </div>
       )
     }

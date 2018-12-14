@@ -13,7 +13,8 @@ class List extends React.Component {
     }
 
     return (
-      <div className='col-3 list'>
+      <div className='list border'>
+      <div className='inputs'>
         <select onChange={updateFilteredList}>
           <option value='all'>All</option>
           <option value='gen1'>Generation I</option>
@@ -24,6 +25,7 @@ class List extends React.Component {
           <option value='gen6'>Generation VI</option>
         </select>
         <input type='textbox' className='searchBox' onChange={handleSearchFilter} placeholder='Search...' />
+      </div>
 
         <div className='pokeList'>
           {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import List from './Components/List'
 import Info from './Components/Info'
 import './App.css';
+import pokeball from './pokeball.png';
 
 const axios = require('axios');
 
@@ -35,12 +36,15 @@ class App extends Component {
             return pokemon
           }
           ).slice(0, 721),
-          loading: false
         }))
-        .then(() => this.setState({
-          filteredList: this.state.pokemonList
-        }))
-    }
+        .then(() => 
+          setTimeout(() => {
+            this.setState({
+              filteredList: this.state.pokemonList,
+              loading: false
+            })}, 3000)
+        )
+          }
   }
 
   handleSearchFilter(event) {
@@ -172,11 +176,16 @@ class App extends Component {
     // Waits for initial pokemon list before rendering main page
     if (loading) {
       return (
-        <h1 className='loading'>Loading...</h1>
+        <div className='loadingPage'>
+          <div className='loadingInfo'>
+            <img alt='pokeball' src={pokeball} className='loadingPokeball'/>
+            <h1 className='loading'>Loading...</h1>
+          </div>
+        </div>
     )}
     return (
-      <div className="container-fluid">
-        <h1 className='title' >Poke'Dex</h1>
+      <div className="">
+        
         <div className="row">
             <List 
               filteredList={filteredList}
