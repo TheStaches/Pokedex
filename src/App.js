@@ -42,7 +42,7 @@ class App extends Component {
             this.setState({
               filteredList: this.state.pokemonList,
               loading: false
-            })}, 3000)
+            })}, 1000)
         )
           }
   }

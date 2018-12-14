@@ -21,18 +21,21 @@
 .shadow-sm {
   border-radius: 5px;
 }
+.bold {
+  font-weight: 500;
+}
 .title {
-  background-color: red;
+  background-color: #EA4646;
   padding-left: 15px;
   width: 100%;
   margin: 0;
 }
 .select {
   text-align: center;
-  vertical-align: middle;
+  margin-top: 300px;
 }
 .loadingPage {
-  background-color: red;
+  background-color: #EA4646;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -126,7 +129,7 @@
   height: 250px;
 }
 .statTitles {
-  background-color: red;
+  background-color: #EA4646;
   padding: 4px 4px 4px 15px;
 }
 .infoImageDiv {
@@ -136,7 +139,7 @@
   width: 100%;
 }
 .infoTitle {
-  background-color: red;
+  background-color: #EA4646;
 }
 .info {
   display: flex;

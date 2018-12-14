@@ -16,7 +16,7 @@ class Info extends React.Component {
           
     {/* Info page header */}
           <div className='infoHeader'>
-            <h1>#{id}: {capitalize(name)}</h1>
+            <h1 className=''>#{id}: {capitalize(name)}</h1>
             <div className='typeIcons'>
               {types.map((type, index) => 
                 <div key={index}className={`types ${type.type.name}`}>{capitalize(type.type.name)}</div>
@@ -30,9 +30,9 @@ class Info extends React.Component {
               <img alt='img' className='infoImage' src={sprites.front_default} />
             </div>
             <div className='col-8 shadow'>
-              {<p>ID: #{id}</p>}
-              {<p>Name: {capitalize(name)}</p>}
-              {<p>Entry: {flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text}</p>}
+              {<p><span className='bold'>ID: </span>#{id}</p>}
+              {<p><span className='bold'>Name:</span>: {capitalize(name)}</p>}
+              {<p><span className='bold'>Entry:</span>  {flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text}</p>}
             </div>
           </div>
         
@@ -41,40 +41,40 @@ class Info extends React.Component {
 
         {/* Info */}
             <div className='col-4 shadow'>
-              <h3 className='statTitles' >Info: </h3>
+              <h3 className='statTitles' >Info </h3>
               <div className='info '>
-                <div>Height: </div>
+                <div className='bold'>Height: </div>
                 <div>{Math.abs(height / 39.3701 * 12).toFixed(0)}' {(height / 39.3701 * 12 % 12).toFixed(0)}"</div>
               </div>
               <div className='info'>
-                <div>Weight: </div>
+                <div className='bold'>Weight: </div>
                 <div>{(weight * .220462262185).toFixed(1)} lbs</div>
               </div>
               <div className='info'>
-                <div>Base Exp: </div>
+                <div className='bold'>Base Exp: </div>
                 <div>{base_experience}</div>
               </div>
               <div className='info'>
-                <div>Color: </div>
+                <div className='bold'>Color: </div>
                 <div>{capitalize(color.name)}</div>
               </div>
               <div className='info'>
-                <div>Shape: </div>
+                <div className='bold'>Shape: </div>
                 <div>{capitalize(shape.name)}</div>
               </div>
               <div className='info'>
-                <div>Habitat: </div>
+                <div className='bold'>Habitat: </div>
                 <div>{habitat ? capitalize(habitat.name) : 'n/a'}</div>
               </div>
             </div>
 
         {/* Base Stats */}
             <div className='col-4 shadow'>
-              <h3 className='statTitles' >Base Stats:</h3>
+              <h3 className='statTitles' >Base Stats</h3>
               {
                 stats.map((stat, index) => 
                   <div className='stats' key={index} >
-                    <div> {removeDash(stat.stat.name)}</div>
+                    <div className='bold'> {removeDash(stat.stat.name)}</div>
                     <div> {stat.base_stat}</div>
                   </div>
                 )
@@ -83,7 +83,7 @@ class Info extends React.Component {
 
         {/* Abilities */}
             <div className='col-4 shadow'>
-              <h3 className='statTitles'>Abilities: </h3>
+              <h3 className='statTitles'>Abilities </h3>
               <div className='allAbilities'>
               {
                 abilities.map((ability, index) => {
@@ -108,7 +108,7 @@ class Info extends React.Component {
     {/* Moves */}
           <div className='row rows'>
             <div className='col-12'>
-              <h3 className='statTitles'>Moves: </h3>
+              <h3 className='statTitles'>Moves </h3>
               <div className='allMoves'>
               {
                 moves.map((move, index) => {
